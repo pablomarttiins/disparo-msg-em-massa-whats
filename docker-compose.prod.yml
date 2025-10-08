@@ -56,7 +56,6 @@ services:
       # Mapeia volumes para uploads e backups persistirem
       - uploads:/app/uploads
       - backups:/app/backups
-    command: npm run start
 
   # --- SERVIÇO DO BANCO DE DADOS ---
   # Utiliza a imagem oficial do PostgreSQL.

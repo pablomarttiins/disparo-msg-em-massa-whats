@@ -1,0 +1,96 @@
+version: '3.8'
+
+# ==============================================================================
+# ARQUIVO DOCKER COMPOSE PARA AMBIENTE DE PRODUÇÃO
+# ==============================================================================
+#
+# Para subir os serviços:
+# 1. Crie um arquivo .env na raiz do projeto (copie do .env.example)
+# 2. Preencha as variáveis de ambiente no .env
+# 3. Execute: docker-compose -f docker-compose.prod.yml up -d --build
+#
+# Para aplicar migrações do banco de dados:
+# docker-compose -f docker-compose.prod.yml run --rm backend npm run migrate
+#
+# ==============================================================================
+
+services:
+  # --- SERVIÇO DO FRONTEND ---
+  # Constrói a imagem a partir do Dockerfile do frontend e serve na porta 80.
+  # O Nginx dentro do contêiner faz o proxy reverso para a API do backend.
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: astracampaign-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443" # Porta para futuro HTTPS
+    networks:
+      - astracampaign-net
+    depends_on:
+      - backend
+    volumes:
+      # Volume para certificados SSL (Let's Encrypt)
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+
+  # --- SERVIÇO DO BACKEND ---
+  # Constrói a imagem a partir do Dockerfile do backend.
+  # Não expõe portas publicamente, pois o acesso é feito via proxy do frontend.
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: astracampaign-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Garante que o backend se conecte ao banco de dados usando o nome do serviço 'db'
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    networks:
+      - astracampaign-net
+    depends_on:
+      - db
+    volumes:
+      # Mapeia volumes para uploads e backups persistirem
+      - uploads:/app/uploads
+      - backups:/app/backups
+
+  # --- SERVIÇO DO BANCO DE DADOS ---
+  # Utiliza a imagem oficial do PostgreSQL.
+  # Os dados são persistidos em um volume para não serem perdidos.
+  db:
+    image: postgres:15-alpine
+    container_name: astracampaign-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - astracampaign-net
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+# --- REDES E VOLUMES ---
+# Define a rede compartilhada e os volumes para persistência de dados.
+networks:
+  astracampaign-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
+  uploads:
+    driver: local
+  backups:
+    driver: local
+  certbot-etc:
+    driver: local
+  certbot-var:
+    driver: local

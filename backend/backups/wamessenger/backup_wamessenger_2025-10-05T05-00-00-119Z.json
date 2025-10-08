@@ -1,0 +1,100 @@
+{
+  "timestamp": "2025-10-05T05:00:00.163Z",
+  "version": "1.0",
+  "tenant": {
+    "id": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+    "slug": "wamessenger",
+    "name": "WAMessenger",
+    "active": true,
+    "createdAt": "2025-10-04T13:43:26.504Z",
+    "updatedAt": "2025-10-04T14:40:55.634Z"
+  },
+  "data": {
+    "users": [
+      {
+        "id": "1de794b3-1a9c-4e87-9689-31d08c94dad1",
+        "nome": "Administrador",
+        "email": "admin@wamessenger.com.br",
+        "senha": "$2a$12$H3ixovMugAIdh/AMRvUF6OzqbG0GLau2PcttXn42igNYKDRzquq26",
+        "role": "ADMIN",
+        "ativo": true,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "ultimoLogin": null,
+        "criadoEm": "2025-10-04T13:50:18.879Z",
+        "atualizadoEm": "2025-10-04T14:41:46.383Z"
+      },
+      {
+        "id": "87919a19-c841-4bbf-b964-c49728665476",
+        "nome": "Administrador",
+        "email": "admin@astraonline.com.br",
+        "senha": "$2a$12$SWgVq8RE0z4425oTmgd6SOsfdKnBlwsTS56pfZbMLpk6afy0FI3eO",
+        "role": "ADMIN",
+        "ativo": true,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "ultimoLogin": null,
+        "criadoEm": "2025-10-04T15:12:26.656Z",
+        "atualizadoEm": "2025-10-04T15:12:26.656Z"
+      }
+    ],
+    "contacts": [
+      {
+        "id": "2f9a0d70-29e7-436d-8cec-55145ef4d04c",
+        "nome": "João Silva",
+        "telefone": "+5511999999999",
+        "email": "joao@email.com",
+        "tags": [],
+        "observacoes": "Cliente desde 2020",
+        "categoriaId": null,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "criadoEm": "2025-10-04T15:22:47.865Z",
+        "atualizadoEm": "2025-10-04T15:22:47.865Z"
+      },
+      {
+        "id": "43165774-2fd6-4e26-878d-d349e7fef3d9",
+        "nome": "Maria Santos",
+        "telefone": "+5511888888888",
+        "email": "maria@email.com",
+        "tags": [],
+        "observacoes": "Fornecedor de materiais",
+        "categoriaId": null,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "criadoEm": "2025-10-04T15:22:47.877Z",
+        "atualizadoEm": "2025-10-04T15:22:47.877Z"
+      },
+      {
+        "id": "f6dd8b85-6e60-4dd7-bc5a-6669d79d312a",
+        "nome": "Pedro Oliveira",
+        "telefone": "+5511777777777",
+        "email": "pedro@email.com",
+        "tags": [],
+        "observacoes": null,
+        "categoriaId": null,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "criadoEm": "2025-10-04T15:22:47.881Z",
+        "atualizadoEm": "2025-10-04T15:22:47.881Z"
+      },
+      {
+        "id": "249408ad-94f7-42c8-bc3d-8b33c3a2d856",
+        "nome": "Ana Costa",
+        "telefone": "+5511666666666",
+        "email": "ana@email.com",
+        "tags": [],
+        "observacoes": "Parceiro estratégico",
+        "categoriaId": null,
+        "tenantId": "5780e8f7-97aa-4e46-939e-0d43633a6d72",
+        "criadoEm": "2025-10-04T15:22:47.884Z",
+        "atualizadoEm": "2025-10-04T15:22:47.884Z"
+      }
+    ],
+    "campaigns": [],
+    "whatsAppSessions": [],
+    "notifications": []
+  },
+  "statistics": {
+    "usersCount": 2,
+    "contactsCount": 4,
+    "campaignsCount": 0,
+    "sessionsCount": 0,
+    "notificationsCount": 0
+  }
+}

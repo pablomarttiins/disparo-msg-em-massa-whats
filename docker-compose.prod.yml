@@ -25,7 +25,7 @@ services:
     container_name: astracampaign-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8080:80" # A porta 8080 do host mapeia para a 80 do contêiner
       - "443:443" # Porta para futuro HTTPS
     networks:
       - astracampaign-net
